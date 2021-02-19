@@ -6,9 +6,16 @@
 
   export let song: Song;
   export let autoplay: boolean;
+  export let isFirstPlay: boolean;
 
   let paused: boolean = true;
   let duration: number, currentTime: number;
+
+  const onPlay = () => {
+    if (!isFirstPlay) return;
+    autoplay = true;
+    isFirstPlay = false;
+  };
 
   const ended = () => {
     dispatch("ended");
@@ -26,7 +33,7 @@
 </article>
 
 <!-- svelte-ignore a11y-media-has-caption -->
-<audio src={song.file} preload="auto" {autoplay} bind:paused bind:duration bind:currentTime on:ended={ended} />
+<audio src={song.file} preload="auto" {autoplay} bind:paused bind:duration bind:currentTime on:ended={ended} on:play={onPlay} />
 
 <!-- svelte-ignore a11y-media-has-caption -->
 <style>

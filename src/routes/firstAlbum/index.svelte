@@ -5,16 +5,16 @@
   import Song from "../../components/song/Song.svelte";
   import Chevron from "../../components/Chevron.svelte";
   import Switch from "../../components/Switch.svelte";
-  import { bind } from "svelte/internal";
 
   let currentSong = 0;
   let autoplay = false;
+  let isFirstPlay = true;
+
   const nextSong = () => (currentSong = currentSong + 1 >= songs.length ? 0 : currentSong + 1);
   const previousSong = () => (currentSong = currentSong - 1 < 0 ? songs.length - 1 : currentSong - 1);
 
   const onSongEnd = () => {
     if (currentSong === songs.length - 1) autoplay = false;
-    else autoplay = true;
 
     nextSong();
   };
@@ -35,7 +35,7 @@
 {#each songs as song, idx}
   {#if currentSong === idx}
     <div in:blur={{ delay: 400, amount: 10 }} out:blur={{ amount: 10 }}>
-      <Song {song} {autoplay} on:ended={onSongEnd} />
+      <Song {song} bind:autoplay bind:isFirstPlay on:ended={onSongEnd} />
     </div>
   {/if}
 {/each}

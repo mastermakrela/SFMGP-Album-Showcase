@@ -8,7 +8,7 @@
     "export": "sapper export --legacy --basepath SFMGP-Album-Showcase",
     "start": "node __sapper__/build",
     "validate": "svelte-check --ignore src/node_modules/@sapper",
-    "deploy": "gh-pages -d __sapper__/export/SFMGP-Album-Showcase"
+    "deploy": "rm -r __sapper__/export/SFMGP-Album-Showcase/favicon.png && gh-pages -d __sapper__/export/SFMGP-Album-Showcase"
   },
   "dependencies": {
     "compression": "^1.7.1",
