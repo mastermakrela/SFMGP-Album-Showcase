@@ -15,6 +15,11 @@
   };
 </script>
 
+<svelte:head>
+  <title>{`${song.title} | SFMGP`}</title>
+  <link rel="shortcut icon" type="image/jpg" href={song.coverImage} />
+</svelte:head>
+
 <div class="background" style={`background-image: url(${song.backgroundImage});`} />
 <article>
   <SongCover {song} percentPlayed={(100 * currentTime) / duration} bind:paused />
