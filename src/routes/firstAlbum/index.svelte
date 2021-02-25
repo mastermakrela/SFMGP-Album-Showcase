@@ -3,12 +3,15 @@
 
   import { albumData as songs } from "./_data";
   import Song from "../../components/song/Song.svelte";
-  import Chevron from "../../components/Chevron.svelte";
-  import Switch from "../../components/Switch.svelte";
 
-  let currentSong = 0;
+  import Chevron from "../../components/Chevron.svelte";
+  import AutoplaySwitch from "../../components/AutoplaySwitch.svelte";
+  import VolumeSlider from "../../components/VolumeSlider.svelte";
+
+  let currentSong = 4;
   let autoplay = false;
   let isFirstPlay = true;
+  let volume: number;
 
   const nextSong = () => (currentSong = currentSong + 1 >= songs.length ? 0 : currentSong + 1);
   const previousSong = () => (currentSong = currentSong - 1 < 0 ? songs.length - 1 : currentSong - 1);
@@ -19,23 +22,23 @@
     nextSong();
   };
 
-  let innerWidth: number;
+  const onKeyPress = (e) => {
+    if (e.keyCode === 65) autoplay = !autoplay;
+  };
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window on:keydown|preventDefault={onKeyPress} />
 
 <Chevron side="left" on:click={previousSong} />
 <Chevron side="right" on:click={nextSong} />
 
-<span class="autoplay">
-  <Switch bind:checked={autoplay} />
-  Autoplay
-</span>
+<AutoplaySwitch bind:autoplay />
+<VolumeSlider bind:volume />
 
 {#each songs as song, idx}
   {#if currentSong === idx}
     <div in:blur={{ delay: 400, amount: 10 }} out:blur={{ amount: 10 }}>
-      <Song {song} bind:autoplay bind:isFirstPlay on:ended={onSongEnd} />
+      <Song {song} bind:autoplay bind:isFirstPlay on:ended={onSongEnd} bind:volume />
     </div>
   {/if}
 {/each}
@@ -44,23 +47,5 @@
   div {
     height: calc(100 * var(--vh));
     width: calc(100 * var(--vw));
-  }
-
-  .autoplay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1em;
-
-    z-index: 75;
-
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 0.7em;
-    align-items: center;
-
-    font-weight: 500;
-    color: white;
-    opacity: 0.6;
   }
 </style>

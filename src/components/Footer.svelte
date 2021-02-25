@@ -1,15 +1,15 @@
 <script lang="ts"></script>
 
 <footer>
-  <!-- <span>
-    <a href="krzychu tu jebnij linka">How to use offline?</a>
-  </span> -->
   <span>
     © SFMGP Music: <a href="https://www.youtube.com/channel/UCw9iJU7m6Eq9WyLF2MrvUtQ">BatoRec</a>
     Images: <a href="https://www.instagram.com/strakkas">strakkas</a>
   </span>
   <span>
     Website: <a href="https://github.com/Mastermakrela">@mastermakrela</a>
+  </span>
+  <span>
+    All icons used come from <a href="https://fontawesome.com/license">FontAwesome</a>
   </span>
 </footer>
 
@@ -19,6 +19,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
+    margin-bottom: 8px;
 
     display: grid;
     justify-content: center;

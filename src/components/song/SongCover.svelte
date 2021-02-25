@@ -8,27 +8,23 @@
   export let percentPlayed = 0;
 
   let scale = spring(1, { damping: 0.5 });
+  let showPlay = false;
+  let showPause = false;
 
   const onClick = () => {
-    scale.set(0.9).then(() => {
-      scale.set(1);
-      setTimeout(() => {
-        showPlay = false;
-        showPause = false;
-      }, 700);
-    });
-
-    if (paused) {
-      showPlay = true;
-    } else {
-      showPause = true;
-    }
-
+    scale.set(0.9).then(() => scale.set(1));
     paused = !paused;
   };
 
-  let showPlay = false;
-  let showPause = false;
+  $: if (paused) {
+    showPause = true;
+    setTimeout(() => (showPause = false), 700);
+  }
+
+  $: if (!paused) {
+    showPlay = true;
+    setTimeout(() => (showPlay = false), 700);
+  }
 </script>
 
 <div style={`transform: scale(${$scale});`}>
@@ -91,6 +87,8 @@
 
     width: 100vw;
     height: 10vh;
+
+    mix-blend-mode: difference;
   }
 
   path {
