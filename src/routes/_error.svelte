@@ -1,9 +1,3 @@
-<script lang="ts" context="module">
-  // export async function preload(page, session) {
-  //   return this.redirect(302, "firstAlbum");
-  // }
-</script>
-
 <script lang="ts">
   export let status: number;
   export let error: Error;

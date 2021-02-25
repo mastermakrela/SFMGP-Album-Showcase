@@ -22,12 +22,12 @@
     dispatch("ended");
   };
 
-  const onSpacePress = (e) => {
-    if (e.keyCode === 32) paused = !paused;
+  const onSpacePress = (e: KeyboardEvent) => {
+    if (e.code === "Space") paused = !paused;
   };
 </script>
 
-<svelte:window on:keydown|preventDefault={onSpacePress} />
+<svelte:window on:keydown={onSpacePress} />
 
 <svelte:head>
   <title>{`${song.title} | SFMGP`}</title>
