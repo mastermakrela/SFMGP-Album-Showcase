@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
+  import { prevent_default } from "svelte/internal";
   import type { Song } from "../../types/types";
   import SongCover from "./SongCover.svelte";
   const dispatch = createEventDispatcher();
@@ -20,7 +21,15 @@
   const ended = () => {
     dispatch("ended");
   };
+
+  const onSpacePress = (e) => {
+    if (e.keyCode !== 32) return;
+    console.log("🚀 ~ file: Song.svelte ~ line 28 ~ onSpacePress ~ e", e);
+    paused = !paused;
+  };
 </script>
+
+<svelte:window on:keydown|preventDefault={onSpacePress} />
 
 <svelte:head>
   <title>{`${song.title} | SFMGP`}</title>

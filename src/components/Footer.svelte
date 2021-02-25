@@ -1,15 +1,15 @@
 <script lang="ts"></script>
 
 <footer>
-  <span>
+  <!-- <span>
     <a href="krzychu tu jebnij linka">How to use offline?</a>
+  </span> -->
+  <span>
+    © SFMGP Music: <a href="https://www.youtube.com/channel/UCw9iJU7m6Eq9WyLF2MrvUtQ">BatoRec</a>
+    Images: <a href="https://www.instagram.com/strakkas">strakkas</a>
   </span>
   <span>
-    © SFMGP Music: <a href="krzychu tu jebnij linka">batore</a>
-    Images: <a href="krzychu tu jebnij linka">bebke</a>
-  </span>
-  <span>
-    Website: <a href="krzychu tu jebnij linka">@mastermakrela</a>
+    Website: <a href="https://github.com/Mastermakrela">@mastermakrela</a>
   </span>
 </footer>
 
